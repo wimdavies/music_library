@@ -1,4 +1,4 @@
-# {{TABLE NAME}} Model and Repository Classes Design Recipe
+# {{artists}} Model and Repository Classes Design Recipe
 
 _Copy this recipe template to design and implement Model and Repository classes for a database table._
 
@@ -55,17 +55,16 @@ psql -h 127.0.0.1 your_database_name < seeds_{table_name}.sql
 Usually, the Model class name will be the capitalised table name (single instead of plural). The same name is then suffixed by `Repository` for the Repository class name.
 
 ```ruby
-# EXAMPLE
-# Table name: students
+# Table name: artists
 
 # Model class
-# (in lib/student.rb)
-class Student
+# (in lib/artist.rb)
+class Artist
 end
 
 # Repository class
-# (in lib/student_repository.rb)
-class StudentRepository
+# (in lib/artist_repository.rb)
+class ArtistRepository
 end
 ```
 
@@ -74,16 +73,15 @@ end
 Define the attributes of your Model class. You can usually map the table columns to the attributes of the class, including primary and foreign keys.
 
 ```ruby
-# EXAMPLE
-# Table name: students
+# Table name: artists
 
 # Model class
-# (in lib/student.rb)
+# (in lib/artist.rb)
 
-class Student
+class Artist
 
   # Replace the attributes by your own columns.
-  attr_accessor :id, :name, :cohort_name
+  attr_accessor :id, :name, :genre
 end
 
 # The keyword attr_accessor is a special Ruby feature
@@ -105,41 +103,21 @@ Using comments, define the method signatures (arguments and return value) and wh
 
 ```ruby
 # EXAMPLE
-# Table name: students
+# Table name: artists
 
 # Repository class
-# (in lib/student_repository.rb)
+# (in lib/artist_repository.rb)
 
-class StudentRepository
+class ArtistRepository
 
   # Selecting all records
   # No arguments
   def all
     # Executes the SQL query:
-    # SELECT id, name, cohort_name FROM students;
+    # SELECT id, name, genre FROM artists;
 
-    # Returns an array of Student objects.
+    # Returns an array of Artist objects.
   end
-
-  # Gets a single record by its ID
-  # One argument: the id (number)
-  def find(id)
-    # Executes the SQL query:
-    # SELECT id, name, cohort_name FROM students WHERE id = $1;
-
-    # Returns a single Student object.
-  end
-
-  # Add more methods below for each operation you'd like to implement.
-
-  # def create(student)
-  # end
-
-  # def update(student)
-  # end
-
-  # def delete(student)
-  # end
 end
 ```
 
