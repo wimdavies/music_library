@@ -55,6 +55,18 @@ psql -h 127.0.0.1 your_database_name < seeds_{table_name}.sql
 Usually, the Model class name will be the capitalised table name (single instead of plural). The same name is then suffixed by `Repository` for the Repository class name.
 
 ```ruby
+# Model
+class Album
+
+end
+
+# Repository class
+class AlbumRepository
+end
+
+```
+
+```ruby
 # EXAMPLE
 # Table name: students
 
@@ -73,6 +85,14 @@ end
 
 Define the attributes of your Model class. You can usually map the table columns to the attributes of the class, including primary and foreign keys.
 
+```ruby
+# Model
+class Album
+
+
+  attr_accessor :id, :title, :release_year, :artist_id
+end
+```
 ```ruby
 # EXAMPLE
 # Table name: students
@@ -103,6 +123,12 @@ Your Repository class will need to implement methods for each "read" or "write" 
 
 Using comments, define the method signatures (arguments and return value) and what they do - write up the SQL queries that will be used by each method.
 
+```ruby
+# Repository class
+# (in lib/student_repository.rb)
+class StudentRepository
+end
+```
 ```ruby
 # EXAMPLE
 # Table name: students

@@ -13,3 +13,4 @@ TRUNCATE TABLE albums RESTART IDENTITY; -- replace with your own table name.
 
 INSERT INTO albums (title, release_year, artist_id) VALUES ('The Soft Bulletin', 1999, 1);
 INSERT INTO albums (title, release_year, artist_id) VALUES ('Mezzanine', 1998, 2);
+
