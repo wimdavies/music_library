@@ -92,48 +92,21 @@ Your Repository class will need to implement methods for each "read" or "write" 
 Using comments, define the method signatures (arguments and return value) and what they do - write up the SQL queries that will be used by each method.
 
 ```ruby
-# Repository class
-# (in lib/student_repository.rb)
-class StudentRepository
-end
-```
-```ruby
-# EXAMPLE
-# Table name: students
+# Table name: albums
 
 # Repository class
-# (in lib/student_repository.rb)
+# (in lib/album_repository.rb)
 
-class StudentRepository
+class AlbumRepository
 
   # Selecting all records
   # No arguments
   def all
     # Executes the SQL query:
-    # SELECT id, name, cohort_name FROM students;
+    # SELECT id, title, release_year, artist_id FROM albums;
 
-    # Returns an array of Student objects.
+    # Returns an array of Album objects.
   end
-
-  # Gets a single record by its ID
-  # One argument: the id (number)
-  def find(id)
-    # Executes the SQL query:
-    # SELECT id, name, cohort_name FROM students WHERE id = $1;
-
-    # Returns a single Student object.
-  end
-
-  # Add more methods below for each operation you'd like to implement.
-
-  # def create(student)
-  # end
-
-  # def update(student)
-  # end
-
-  # def delete(student)
-  # end
 end
 ```
 
@@ -144,37 +117,24 @@ Write Ruby code that defines the expected behaviour of the Repository class, fol
 These examples will later be encoded as RSpec tests.
 
 ```ruby
-# EXAMPLES
-
 # 1
-# Get all students
+# returns list of all albums
 
-repo = StudentRepository.new
+repo = AlbumRepository.new
 
-students = repo.all
+albums = repo.all
 
-students.length # =>  2
+albums.length # =>  2
 
-students[0].id # =>  1
-students[0].name # =>  'David'
-students[0].cohort_name # =>  'April 2022'
+albums[0].id # =>  '1'
+albums[0].title # =>  'The Soft Bulletin'
+albums[0].release_year # =>  '1999'
+albums[0].artist_id # => '1'
 
-students[1].id # =>  2
-students[1].name # =>  'Anna'
-students[1].cohort_name # =>  'May 2022'
-
-# 2
-# Get a single student
-
-repo = StudentRepository.new
-
-student = repo.find(1)
-
-student.id # =>  1
-student.name # =>  'David'
-student.cohort_name # =>  'April 2022'
-
-# Add more examples for each method
+albums[1].id # =>  '2'
+albums[1].title # =>  'Mezzanine'
+albums[1].release_year # =>  '1998'
+albums[1].artist_id # => '2'
 ```
 
 Encode this example as a test.
