@@ -18,5 +18,21 @@ RSpec.describe ArtistRepository do
     expect(artists.first.id).to eq '1'
     expect(artists.first.name).to eq 'The Flaming Lips'
   end
+
+  it 'returns The Flaming Lips as an artist' do
+    repo = ArtistRepository.new
+    artist = repo.find(1)
+    expect(artist.id).to eq '1'
+    expect(artist.name).to eq 'The Flaming Lips'
+    expect(artist.genre).to eq 'Alternative Rock'
+  end
+
+  it 'returns Massive Attack as another artist' do
+    repo = ArtistRepository.new
+    artist = repo.find(2)
+    expect(artist.id).to eq '2'
+    expect(artist.name).to eq 'Massive Attack'
+    expect(artist.genre).to eq 'Alternative'
+  end
 end
 
