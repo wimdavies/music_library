@@ -9,8 +9,8 @@ class AlbumRepository
     # SELECT id, title, release_year, artist_id FROM albums;
     sql = 'SELECT id, title, release_year, artist_id FROM albums;'
     result = DatabaseConnection.exec_params(sql, [])
+    
     # Returns an array of Album objects.
-
     albums = []
 
     result.each do |record|
