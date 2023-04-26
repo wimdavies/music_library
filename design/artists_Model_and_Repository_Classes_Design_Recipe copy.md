@@ -126,6 +126,27 @@ class ArtistRepository
 
     # Returns a single Artist object.
   end
+
+  def create(artist)
+    # Executes the SQL query
+    # INSERT INTO artists (name, genre) VALUES ($1, $2);
+
+    # No return value, creates the record on database
+  end
+
+  def delete(id)
+    # Executes the SQL query
+    # DELETE FROM artists WHERE id = $1;
+
+    #No return value, deletes the record on database
+  end
+
+  def update(artists)
+    # Executes the SQL query
+    # UPDATE artists SET name = $1, genre = $2 WHERE id = $3
+
+    # No return value, updates the record on database
+  end
 end
 ```
 
@@ -165,6 +186,36 @@ artist = repo.find(2)
 artist.id # => 2
 artist.name # => 'Massive Attack'
 artist.genre # => 'Alternative'
+
+# 4
+# Create a new artist record on the database
+repo = ArtistRepository.new
+
+artist = Artist.new
+artist.name = 'Fleetwood Mac'
+artist.genre = 'Rock'
+
+repo.create(artist) # => nil
+
+artists = repo.all
+last_artist = artists.last 
+
+last_artist.id # => '3'
+last_artist.name # => 'Fleetwood Mac'
+last_artist.genre # => 'Rock'
+
+# 5
+# Delete an artist from the database
+repo = ArtistRepository.new
+# 'The Flaming Lips', 'Alternative Rock'
+repo.delete(1)
+
+artists = repo.all
+first_artist = artists.first
+
+first_artist.id # => '2'
+first_artist.name # => 'Massive Attack'
+first_artist.genre # => 'Alternative'
 ```
 
 Encode this example as a test.
@@ -178,17 +229,17 @@ This is so you get a fresh table contents every time you run the test suite.
 ```ruby
 # EXAMPLE
 
-# file: spec/student_repository_spec.rb
+# file: spec/artist_repository_spec.rb
 
-def reset_students_table
-  seed_sql = File.read('spec/seeds_students.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'students' })
+def reset_artist_table
+  seed_sql = File.read('spec/seeds_artists.sql')
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'music_library_test' })
   connection.exec(seed_sql)
 end
 
-describe StudentRepository do
+describe ArtistRepository do
   before(:each) do 
-    reset_students_table
+    reset_artists_table
   end
 
   # (your tests will go here).

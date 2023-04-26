@@ -34,5 +34,33 @@ RSpec.describe ArtistRepository do
     expect(artist.name).to eq 'Massive Attack'
     expect(artist.genre).to eq 'Alternative'
   end
+
+  context '#create' do
+    it 'creates a new artist at the end of the line' do
+      repo = ArtistRepository.new
+      artist = Artist.new
+      artist.name = 'Fleetwood Mac'
+      artist.genre = 'Rock'
+      repo.create(artist)
+      artists = repo.all
+      last_artist = artists.last 
+
+      expect(last_artist.id).to eq '3'
+      expect(last_artist.name).to eq 'Fleetwood Mac'
+      expect(last_artist.genre).to eq 'Rock'
+    end
+
+    context "#delete" do
+      it "deletes the first artist" do
+        repo = ArtistRepository.new
+        repo.delete(1)
+        artists = repo.all
+        first_artist = artists.first
+        expect(first_artist.id).to eq '2'
+        expect(first_artist.name).to eq 'Massive Attack'
+        expect(first_artist.genre).to eq 'Alternative'
+      end
+    end
+  end
 end
 

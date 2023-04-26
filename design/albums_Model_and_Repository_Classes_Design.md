@@ -116,6 +116,27 @@ class AlbumRepository
 
     # Returns a single Album object.
   end
+
+  def create(album)
+    # Executes the SQL query
+    # INSERT INTO albums (title, release_year, artist_id) VALUES ($1, $2, $3)
+
+    # No return value, creates the record on database
+  end
+
+  def delete(id)
+    # Executes the SQL query
+    # DELETE FROM albums WHERE id = $1
+
+    #No return value, deletes the record on database
+  end
+
+  def update(album)
+    # Executes the SQL query
+    # UPDATE albums SET title = $1, release_year = $2 WHERE id = $3
+
+    # No return value, updates the record on database
+  end
 end
 ```
 
@@ -165,6 +186,39 @@ album.id # => '2'
 album.title # => 'Mezzanine'
 album.release_year # => '1998'
 album.artist_id # => '2'
+
+# 4 
+# Create a new album record on the database
+
+repo = AlbumRepository.new
+
+album = Album.new
+album.title = 'Rumours'
+album.release_year = 1977
+album.artist_id = '3'
+
+repo.create(album) # => nil
+
+albums = repo.all
+last_album = albums.last 
+
+last_album.title # => 'Rumours'
+last_album.release_year # => 1977
+last_album.artist_id # => '3'
+
+# 5
+# Delete an album from the database
+
+repo = AlbumRepository.new
+# 'The Flaming Lips', '1998', '1');
+repo.delete(1)
+
+albums = repo.all
+first_album = albums.first
+
+first_album.title # => 'Mezzanine'
+first_album.release_year # => '1998'
+
 ```
 
 Encode this example as a test.
@@ -176,10 +230,6 @@ Running the SQL code present in the seed file will empty the table and re-insert
 This is so you get a fresh table contents every time you run the test suite.
 
 ```ruby
-# EXAMPLE
-
-# file: spec/student_repository_spec.rb
-
 def reset_students_table
   seed_sql = File.read('spec/seeds_students.sql')
   connection = PG.connect({ host: '127.0.0.1', dbname: 'students' })

@@ -41,4 +41,36 @@ class ArtistRepository
 
     return artist
   end
+
+  def create(artist)
+    # Executes the SQL query
+    # INSERT INTO artists (name, genre) VALUES ($1, $2);
+    sql = 'INSERT INTO artists (name, genre) VALUES ($1, $2);'
+    params = [artist.name, artist.genre]
+
+    DatabaseConnection.exec_params(sql, params)
+
+    # No return value, creates the record on database
+    return nil
+  end
+
+  def delete(id)
+    # Executes the SQL query
+    # DELETE FROM artists WHERE id = $1;
+    sql = 'DELETE FROM artists WHERE id = $1;'
+    params = [id]
+
+    DatabaseConnection.exec_params(sql, params)
+
+    #No return value, deletes the record on database
+
+    return nil
+  end
+
+  def update(artists)
+    # Executes the SQL query
+    # UPDATE artists SET name = $1, genre = $2 WHERE id = $3
+
+    # No return value, updates the record on database
+  end
 end
