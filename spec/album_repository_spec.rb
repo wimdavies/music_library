@@ -65,7 +65,7 @@ RSpec.describe AlbumRepository do
     end
   end
 
-  context 'With the delete method' do
+  context '#delete' do
     it 'deletes the album from the database' do
       repo = AlbumRepository.new
 
@@ -76,6 +76,42 @@ RSpec.describe AlbumRepository do
 
       expect(first_album.title).to eq 'Mezzanine'
       expect(first_album.release_year).to eq '1998'
+    end
+  end
+
+  context "#update" do
+    it "updates an album with new values" do
+      repo = AlbumRepository.new
+
+      album = repo.find(1)
+
+      album.title = "Blue Lines"
+      album.release_year = "1991"
+      album.artist_id = "2"
+
+      repo.update(album)
+
+      updated_album = repo.find(1)
+
+      expect(updated_album.title).to eq "Blue Lines"
+      expect(updated_album.release_year).to eq "1991"
+      expect(updated_album.artist_id).to eq "2"
+    end
+
+    it "updates an album with one new value" do
+      repo = AlbumRepository.new
+
+      album = repo.find(1)
+
+      album.title = "Blue Lines"
+
+      repo.update(album)
+
+      updated_album = repo.find(1)
+
+      expect(updated_album.title).to eq "Blue Lines"
+      expect(updated_album.release_year).to eq "1999"
+      expect(updated_album.artist_id).to eq "1"
     end
   end
 end

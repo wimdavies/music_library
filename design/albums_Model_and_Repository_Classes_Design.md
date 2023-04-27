@@ -133,7 +133,7 @@ class AlbumRepository
 
   def update(album)
     # Executes the SQL query
-    # UPDATE albums SET title = $1, release_year = $2 WHERE id = $3
+    # UPDATE albums SET title = $1, release_year = $2, artist_id = $3 WHERE id = $4
 
     # No return value, updates the record on database
   end
@@ -189,7 +189,6 @@ album.artist_id # => '2'
 
 # 4 
 # Create a new album record on the database
-
 repo = AlbumRepository.new
 
 album = Album.new
@@ -208,7 +207,6 @@ last_album.artist_id # => '3'
 
 # 5
 # Delete an album from the database
-
 repo = AlbumRepository.new
 # 'The Flaming Lips', '1998', '1');
 repo.delete(1)
@@ -218,6 +216,40 @@ first_album = albums.first
 
 first_album.title # => 'Mezzanine'
 first_album.release_year # => '1998'
+
+# 6 
+# Updates an album with new values
+repo = AlbumRepository.new
+
+album = repo.find(1)
+
+album.title = "Blue Lines"
+album.release_year = "1991"
+album.artist_id = "2"
+
+repo.update(album) # => nil
+
+updated_album = repo.find(1)
+
+updated_album.title # => "Blue Lines"
+updated_album.release_year # => "1991"
+updated_album.artist_id # => "2"
+
+# 7 
+# Updates an album with one new value
+repo = AlbumRepository.new
+
+album = repo.find(1)
+
+album.title = "Blue Lines"
+
+repo.update(album) # => nil
+
+updated_album = repo.find(1)
+
+updated_album.title # => "Blue Lines"
+updated_album.release_year # => "1999"
+updated_album.artist_id # => "1"
 
 ```
 
