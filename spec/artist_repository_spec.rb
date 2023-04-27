@@ -61,6 +61,41 @@ RSpec.describe ArtistRepository do
         expect(first_artist.genre).to eq 'Alternative'
       end
     end
+
+    context "#update" do
+      it "updates the first artist with new values" do
+        repo = ArtistRepository.new
+
+        artist = repo.find(1)
+        
+        artist.name = "Abba"
+        artist.genre = "Pop"
+        
+        repo.update(artist)
+        
+        updated_artist = repo.find(1)
+        
+        expect(updated_artist.name).to eq "Abba"
+        expect(updated_artist.genre).to eq "Pop"
+      end
+    end
+
+    context "#update" do
+      it "updates the first artist with one new value" do
+        repo = ArtistRepository.new
+
+        artist = repo.find(1)
+        
+        artist.genre = "Psychedelic Rock"
+        
+        repo.update(artist)
+        
+        updated_artist = repo.find(1)
+        
+        expect(artist.name).to eq "The Flaming Lips"
+        expect(artist.genre).to eq "Psychedelic Rock"
+      end
+    end
   end
 end
 

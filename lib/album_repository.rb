@@ -72,7 +72,8 @@ class AlbumRepository
   def update(album)
     # Executes the SQL query
     # UPDATE albums SET title = $1, release_year = $2 WHERE id = $3
-    return nil
+    
     # No return value, updates the record on database
+    return nil
   end
 end

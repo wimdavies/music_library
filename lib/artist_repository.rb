@@ -63,14 +63,18 @@ class ArtistRepository
     DatabaseConnection.exec_params(sql, params)
 
     #No return value, deletes the record on database
-
     return nil
   end
 
-  def update(artists)
+  def update(artist)
     # Executes the SQL query
-    # UPDATE artists SET name = $1, genre = $2 WHERE id = $3
+    # UPDATE artists SET name = $1, genre = $2 WHERE id = $3;
+    sql = 'UPDATE artists SET name = $1, genre = $2 WHERE id = $3;'
+    params = [artist.name, artist.genre, artist.id]
+
+    DatabaseConnection.exec_params(sql, params)
 
     # No return value, updates the record on database
+    return nil
   end
 end

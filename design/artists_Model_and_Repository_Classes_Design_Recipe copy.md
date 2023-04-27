@@ -216,6 +216,37 @@ first_artist = artists.first
 first_artist.id # => '2'
 first_artist.name # => 'Massive Attack'
 first_artist.genre # => 'Alternative'
+
+# 6
+# Update an artist from the database with new values
+repo = ArtistRepository.new
+
+artist = repo.find(1)
+
+artist.name = "Abba"
+artist.genre = "Pop"
+
+repo.update(artist) # => returns nothing, so we:
+
+updated_artist = repo.find(1)
+
+artist.name # => "Abba"
+artist.genre # => "Pop"
+
+# 7
+# Update an artist from the database with only one new value
+repo = ArtistRepository.new
+
+artist = repo.find(1)
+
+artist.genre = "Psychedelic Rock"
+
+repo.update(artist) # => returns nothing, so we:
+
+updated_artist = repo.find(1)
+
+artist.name # => "The Flaming Lips"
+artist.genre # => "Psychedelic Rock"
 ```
 
 Encode this example as a test.
