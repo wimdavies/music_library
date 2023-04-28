@@ -29,9 +29,17 @@ class Application
     welcome_message = "Welcome to the music library manager!\n\nWhat would you like to do?\n 1 - List all albums\n 2 - List all artists\n\nEnter your choice:"
     album_list_header = "Here is the list of albums:"
 
+    # puts "About to call io.puts with welcome_message"
     @io.puts welcome_message
-    @io.gets.chomp
+    # puts "Just called io.puts with welcome_message"
+  
+    # puts "About to call io.gets"
+    user_input = @io.gets.chomp
+    # puts "Just called io.gets with input #{user_input.inspect}"
+  
+    # puts "About to call io.puts with album_list_header"
     @io.puts album_list_header
+    # puts "Just called io.puts with album_list_header"
 
   end
 end
