@@ -1,5 +1,6 @@
 require_relative './lib/album_repository'
 require_relative './lib/artist_repository'
+require_relative './lib/database_connection'
 
 class Application
 
@@ -24,6 +25,7 @@ class Application
 
     # Use `@io.puts` or `@io.gets` to
     # write output and ask for user input.
+    @io.puts welcome_message = "Welcome to the music library manager!\n\nWhat would you like to do?\n 1 - List all albums\n 2 - List all artists\n\nEnter your choice:"
   end
 end
 
@@ -40,3 +42,29 @@ if __FILE__ == $0
   )
   app.run
 end
+
+# Running the program should have the following behaviour in the terminal:
+
+
+# Welcome to the music library manager!
+
+# What would you like to do?
+#  1 - List all albums
+#  2 - List all artists
+
+# Enter your choice: 1
+# [ENTER]
+
+# Here is the list of albums:
+#  * 1 - Doolittle
+#  * 2 - Surfer Rosa
+#  * 3 - Waterloo
+#  * 4 - Super Trouper
+#  * 5 - Bossanova
+#  * 6 - Lover
+#  * 7 - Folklore
+#  * 8 - I Put a Spell on You
+#  * 9 - Baltimore
+#  * 10 -	Here Comes the Sun
+#  * 11 - Fodder on My Wings
+#  * 12 -	Ring Ring
