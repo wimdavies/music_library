@@ -115,7 +115,7 @@ CREATE TABLE artists (
   name text,
 );
 
--- Then the table with the foreign key first.
+-- Then the table with the foreign key.
 CREATE TABLE albums (
   id SERIAL PRIMARY KEY,
   title text,

@@ -25,7 +25,14 @@ class Application
 
     # Use `@io.puts` or `@io.gets` to
     # write output and ask for user input.
-    @io.puts welcome_message = "Welcome to the music library manager!\n\nWhat would you like to do?\n 1 - List all albums\n 2 - List all artists\n\nEnter your choice:"
+
+    welcome_message = "Welcome to the music library manager!\n\nWhat would you like to do?\n 1 - List all albums\n 2 - List all artists\n\nEnter your choice:"
+    album_list_header = "Here is the list of albums:"
+
+    @io.puts welcome_message
+    @io.gets.chomp
+    @io.puts album_list_header
+
   end
 end
 
@@ -44,7 +51,6 @@ if __FILE__ == $0
 end
 
 # Running the program should have the following behaviour in the terminal:
-
 
 # Welcome to the music library manager!
 

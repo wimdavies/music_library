@@ -161,11 +161,11 @@ students = repo.all
 
 students.length # =>  2
 
-students[0].id # =>  1
+students[0].id # =>  '1'
 students[0].name # =>  'David'
 students[0].cohort_name # =>  'April 2022'
 
-students[1].id # =>  2
+students[1].id # =>  '2'
 students[1].name # =>  'Anna'
 students[1].cohort_name # =>  'May 2022'
 
@@ -176,7 +176,7 @@ repo = StudentRepository.new
 
 student = repo.find(1)
 
-student.id # =>  1
+student.id # =>  '1'
 student.name # =>  'David'
 student.cohort_name # =>  'April 2022'
 
@@ -198,7 +198,7 @@ This is so you get a fresh table contents every time you run the test suite.
 
 def reset_students_table
   seed_sql = File.read('spec/seeds_students.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'students' })
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'student_directory' })
   connection.exec(seed_sql)
 end
 
